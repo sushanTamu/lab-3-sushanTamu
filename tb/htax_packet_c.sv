@@ -17,7 +17,11 @@ class htax_packet_c extends uvm_sequence_item;
 	//Destination port of packet
 	//Virtual channel requested. Multiple requests allowed. VC bit wide
 	//Length of Data in terms of data packet 
-	rand bit [WIDTH-1:0] data []; //Data - Each data packet is WIDTH-bit wide
+  	rand bit [4:0] delay;
+  	rand bit [PORTS-1:0] dest_port;
+  	randc bit [VC-1:0] vc;
+  	rand bit [5:0] length;
+	rand bit [WIDTH-1:0] data[] ; //Data - Each data packet is WIDTH-bit wide
 
 	// UVM macros for built-in automation
 	`uvm_object_utils_begin(htax_packet_c)
@@ -35,16 +39,15 @@ class htax_packet_c extends uvm_sequence_item;
 
 //TO DO - Complete all below constraints
 	//Constraint 1 : delay should be between 1 and 20
-	constraint delay_cons {}
+	constraint delay_cons {delay inside {[1:20]};}
 
 	//Constraint 2 : dest_port should be between 0 and (PORTS-1)
-	constraint dest_port_cons {}
+	constraint dest_port_cons {dest_port inside {[0:PORTS-1]};}
 
 	//Constraint 3 : VC should be valid VC request
-	constraint vc_cons {}
+	constraint vc_cons {vc==1;}
 
 	//Constraint 4 : Data-length should be greater than 2 and can be maximum 50 :: distribution pattern [3:20]=60%, [21:40]=35%, [41:50]=5%
-	constraint length_cons {
-													data.size() == length;}
+	constraint length_cons {length dist {[3:20]:/60,[21:40]:/35,[41:50]:/5}; data.size() == length;}
 
 endclass : htax_packet_c
