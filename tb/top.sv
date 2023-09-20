@@ -69,7 +69,12 @@ end
 //TO DO complete the below task
 task drive_packet (htax_packet_c pkt);
 
+//At every posedge of clk load each data packet from pkt.data to variable data
+//The whole time the bit of variable port equal to pkt.dest_port is 1 and rest bits are 0
+//Assign port = 4'bx and data = 64'bx after the last data packet
 
+
+//Defining a variable i which has width same as that of the data.length
 logic [5:0] i;
 
 //Running a for loop for assigning the random data value to the 
@@ -88,10 +93,6 @@ for (i='b0; i<pkt.length; i++)  begin
 		default: port = 4'b0001;
 	endcase 
 
-	//$display("Port: %h ", port);
-	//$display("Length: %h ", pkt.length);
-	//$display("i: %d ", i);
-
 	// Assigning the randomized data value for each length to the given data field
 	data = pkt.data[i];
 end
@@ -99,10 +100,6 @@ end
 // Assign the port and data field to X as defined in the TODO list 
 port = 4'bx;
 data = 64'bx;
-
 	
-//At every posedge of clk load each data packet from pkt.data to variable data
-//The whole time the bit of variable port equal to pkt.dest_port is 1 and rest bits are 0
-//Assign port = 4'bx and data = 64'bx after the last data packet
 endtask : drive_packet
 endmodule

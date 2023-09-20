@@ -19,7 +19,7 @@ waves.tcl
 +EMGRLOG
 xrun.log
 -XLSTIME
-1695165784
+1695179956
 -XLKEEP
 -XLMODE
 ./xcelium.d/run.lnx86.22.03.d
@@ -33,4 +33,4 @@ xrun
 -XLVERSION
 "TOOL:	xrun	22.03-s004"
 -XLNAME
-./xcelium.d/run.lnx86.22.03.d/hera3.ece.tamu.edu_8085
+./xcelium.d/run.lnx86.22.03.d/hera3.ece.tamu.edu_48349
